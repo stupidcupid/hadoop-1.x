@@ -12,6 +12,7 @@ public class ListAllFile {
 
     /**
      * core-defult.xml core-size.xml mapred-defult.xml mapred-site.xml
+     * 读取HDFS文件目录下的全部文件
      *
      * @param args
      * @throws Exception
@@ -26,7 +27,7 @@ public class ListAllFile {
         Path listf = new Path("/user/hadoop/input");
         FileStatus stats[] = hdfs.listStatus(listf);
         for (int i = 0; i < stats.length; ++i) {
-            System.out.println(stats[i].getPath().toString());
+            System.out.println(stats[i].getPath().toString() + " " + stats[i].getPermission());
         }
         hdfs.close();
     }

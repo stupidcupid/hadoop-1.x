@@ -9,6 +9,11 @@ import org.apache.hadoop.fs.Path;
  */
 public class DeleteFile {
 
+    /**
+     * 删除HDFS文件
+     * @param args
+     * @throws Exception
+     */
     public static void main(String[] args) throws Exception {
 
         Configuration conf = new Configuration();

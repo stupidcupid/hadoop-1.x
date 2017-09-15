@@ -4,6 +4,7 @@ import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapred.JobConf;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Reducer;
@@ -52,12 +53,17 @@ public class WordCount {
     public static void main(String[] args)
             throws Exception {
         Configuration conf = new Configuration();
-        String[] otherArgs = new GenericOptionsParser(conf, args).getRemainingArgs();
+
+        String[] ioArgs = new String[]{"/user/hadoop/input", "/user/hadoop/output"};
+        String[] otherArgs = new GenericOptionsParser(conf, ioArgs).getRemainingArgs();
         if (otherArgs.length != 2) {
             System.err.println("Usage: wordcount <in> <out>");
             System.exit(2);
         }
-        Job job = new Job(conf, "word count");
+        JobConf jobConf = new JobConf();
+        jobConf.setJar("/Applications/file/work/JavaProject/hadoopbasic/target/hadoop-basic-1.0-SNAPSHOT.jar");
+
+        Job job = new Job(jobConf, "word count");
         job.setJarByClass(WordCount.class);
         job.setMapperClass(TokenizerMapper.class);
         job.setCombinerClass(IntSumReducer.class);

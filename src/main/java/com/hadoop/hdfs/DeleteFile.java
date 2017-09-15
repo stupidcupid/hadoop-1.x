@@ -20,7 +20,7 @@ public class DeleteFile {
 
         FileSystem hdfs = FileSystem.get(conf);
 
-        Path delFile = new Path("/user/hadoop/output1");
+        Path delFile = new Path("/user/hadoop/output");
 
         boolean isDeleted = hdfs.delete(delFile);
 

@@ -20,6 +20,7 @@ import java.io.IOException;
 public class Dedup {
 
 
+
     //map将输入中的value复制到输出数据的key上，并直接输出
     public static class Map extends Mapper<Object, Text, Text, Text> {
         private static Text line = new Text();//每行数据
@@ -29,6 +30,7 @@ public class Dedup {
                 throws IOException, InterruptedException {
             line = value;
             context.write(line, new Text(""));
+            System.out.println(line);
         }
     }
 
@@ -38,6 +40,7 @@ public class Dedup {
         public void reduce(Text key, Iterable<Text> values, Context context)
                 throws IOException, InterruptedException {
             context.write(key, new Text(""));
+            System.out.println(key);
         }
     }
 

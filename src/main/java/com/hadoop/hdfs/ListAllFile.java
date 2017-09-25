@@ -24,7 +24,7 @@ public class ListAllFile {
         Configuration conf = new Configuration();
 
         FileSystem hdfs = FileSystem.get(conf);
-        Path listf = new Path("/user/hadoop/input");
+        Path listf = new Path("/");
         FileStatus stats[] = hdfs.listStatus(listf);
         for (int i = 0; i < stats.length; ++i) {
             System.out.println(stats[i].getPath().toString() + " " + stats[i].getPermission());
